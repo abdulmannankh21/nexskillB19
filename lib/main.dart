@@ -1,3 +1,4 @@
+import 'package:firstapp/home.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -117,22 +118,30 @@ class _MyHomePageState extends State<MyHomePage> {
             SizedBox(
               height: 30,
             ),
-            Container(
-              width: double.infinity,
-              height: 50,
-              decoration: BoxDecoration(
-                color: Colors.red,
-                border: Border.all(color: Colors.red, width: 2),
-                borderRadius: BorderRadius.circular(10),
+            GestureDetector(
+              onTap: (){
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const HomePage(name: "Khawaja Saab",)),
+                );
+              },
+              child: Container(
+                width: double.infinity,
+                height: 50,
+                decoration: BoxDecoration(
+                  color: Colors.red,
+                  border: Border.all(color: Colors.red, width: 2),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Center(
+                    child: Text(
+                  "Authenticate",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold),
+                )),
               ),
-              child: Center(
-                  child: Text(
-                "Authenticate",
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold),
-              )),
             ),
             SizedBox(
               height: 10,
