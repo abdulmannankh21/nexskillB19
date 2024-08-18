@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
-  final String name;
-  const HomePage({super.key, required this.name});
+  final String? name;
+  const HomePage({super.key,  this.name});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -12,6 +12,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       appBar: AppBar(
         title: const Text("NeX\$kill"),
       ),

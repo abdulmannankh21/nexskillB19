@@ -1,4 +1,5 @@
 import 'package:firstapp/home.dart';
+import 'package:firstapp/signup.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -146,13 +147,22 @@ class _MyHomePageState extends State<MyHomePage> {
             SizedBox(
               height: 10,
             ),
-            RichText(
-                text: TextSpan(children: [
-              TextSpan(
-                  text: "Do you have an Account? ",
+            Row(
+              mainAxisAlignment:MainAxisAlignment.center ,
+                children: [
+              Text(
+                 "Do you have an Account? ",
                   style: TextStyle(color: Colors.black)),
-              TextSpan(text: "Sign Up", style: TextStyle(color: Colors.red))
-            ])),
+              GestureDetector(
+                  onTap: (){
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const SignUpScreen()),
+                    );
+                  },
+                  child: Text( "Sign Up", style: TextStyle(color: Colors.red),))
+            ]),
+
           ],
         ),
       ),
