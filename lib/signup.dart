@@ -1,4 +1,5 @@
 import 'package:firstapp/main.dart';
+import 'package:firstapp/widget/text_widget.dart';
 import 'package:flutter/material.dart';
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -179,7 +180,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 onTap: (){
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const MyHomePage(title: "") ),
+                    MaterialPageRoute(builder: (context) => const MyHomePage() ),
                   );
                 },
                 child: Container(
@@ -190,7 +191,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     border: Border.all(color: Colors.red, width: 2),
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  child: Center(
+                  child: const Center(
                       child: Text(
                         "Register",
                         style: TextStyle(
@@ -203,6 +204,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               SizedBox(
                 height: 10,
               ),
+              CustomTextWidget(text: 'Abdullah',),
               Row(
                   mainAxisAlignment:MainAxisAlignment.center ,
                   children: [

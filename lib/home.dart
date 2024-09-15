@@ -1,3 +1,4 @@
+import 'package:firstapp/widget/button.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -69,8 +70,13 @@ class _HomePageState extends State<HomePage> {
                 Text("Good Morning!",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 22),),
 
                 Text(" ${widget.name}",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 22,color: Colors.red),),
+
+
               ],
-            )
+            ),
+            CustomButton(text: 'Please Hit Button', onTap: () {
+              print("You Hit Me !");
+            },color: Colors.red,borderRadius: 8.0,),
           ],
         ),
       ),

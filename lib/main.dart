@@ -1,6 +1,9 @@
+import 'dart:convert';
+
 import 'package:firstapp/home.dart';
 import 'package:firstapp/signup.dart';
 import 'package:flutter/material.dart';
+import 'package:dio/dio.dart';
 
 void main() {
   runApp(const MyApp());
@@ -23,9 +26,9 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+  const MyHomePage({super.key, this.title});
 
-  final String title;
+  final String? title;
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -167,5 +170,32 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
     );
+  }
+  void login(String username,String password) async{
+    var headers = {
+      'Cookie': 'accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJlbWlseXMiLCJlbWFpbCI6ImVtaWx5LmpvaG5zb25AeC5kdW1teWpzb24uY29tIiwiZmlyc3ROYW1lIjoiRW1pbHkiLCJsYXN0TmFtZSI6IkpvaG5zb24iLCJnZW5kZXIiOiJmZW1hbGUiLCJpbWFnZSI6Imh0dHBzOi8vZHVtbXlqc29uLmNvbS9pY29uL2VtaWx5cy8xMjgiLCJpYXQiOjE3MjUxODY4MDAsImV4cCI6MTcyNTE5MDQwMH0.nJciqriWnS11f48qbtXFDd-IKlturyoXZnJ8OS_swLQ; refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJlbWlseXMiLCJlbWFpbCI6ImVtaWx5LmpvaG5zb25AeC5kdW1teWpzb24uY29tIiwiZmlyc3ROYW1lIjoiRW1pbHkiLCJsYXN0TmFtZSI6IkpvaG5zb24iLCJnZW5kZXIiOiJmZW1hbGUiLCJpbWFnZSI6Imh0dHBzOi8vZHVtbXlqc29uLmNvbS9pY29uL2VtaWx5cy8xMjgiLCJpYXQiOjE3MjUxODY4MDAsImV4cCI6MTcyNzc3ODgwMH0.fvgL97u9RA06qxVAPmQZwIvEQyNjqW-jSPwAyLwLuwo'
+    };
+    var data = FormData.fromMap({
+      'username': username,
+      'password': password,
+      'expiresInMins': '50'
+    });
+
+    var dio = Dio();
+    var response = await dio.request(
+      'https://dummyjson.com/auth/login',
+      options: Options(
+        method: 'POST',
+        headers: headers,
+      ),
+      data: data,
+    );
+
+    if (response.statusCode == 200) {
+      print(json.encode(response.data));
+    }
+    else {
+      print(response.statusMessage);
+    }
   }
 }
