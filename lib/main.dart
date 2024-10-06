@@ -11,8 +11,6 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -171,15 +169,14 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
   }
-  void login(String username,String password) async{
+
+  void login(String username, String password) async {
     var headers = {
-      'Cookie': 'accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJlbWlseXMiLCJlbWFpbCI6ImVtaWx5LmpvaG5zb25AeC5kdW1teWpzb24uY29tIiwiZmlyc3ROYW1lIjoiRW1pbHkiLCJsYXN0TmFtZSI6IkpvaG5zb24iLCJnZW5kZXIiOiJmZW1hbGUiLCJpbWFnZSI6Imh0dHBzOi8vZHVtbXlqc29uLmNvbS9pY29uL2VtaWx5cy8xMjgiLCJpYXQiOjE3MjUxODY4MDAsImV4cCI6MTcyNTE5MDQwMH0.nJciqriWnS11f48qbtXFDd-IKlturyoXZnJ8OS_swLQ; refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJlbWlseXMiLCJlbWFpbCI6ImVtaWx5LmpvaG5zb25AeC5kdW1teWpzb24uY29tIiwiZmlyc3ROYW1lIjoiRW1pbHkiLCJsYXN0TmFtZSI6IkpvaG5zb24iLCJnZW5kZXIiOiJmZW1hbGUiLCJpbWFnZSI6Imh0dHBzOi8vZHVtbXlqc29uLmNvbS9pY29uL2VtaWx5cy8xMjgiLCJpYXQiOjE3MjUxODY4MDAsImV4cCI6MTcyNzc3ODgwMH0.fvgL97u9RA06qxVAPmQZwIvEQyNjqW-jSPwAyLwLuwo'
+      'Cookie':
+          'accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJlbWlseXMiLCJlbWFpbCI6ImVtaWx5LmpvaG5zb25AeC5kdW1teWpzb24uY29tIiwiZmlyc3ROYW1lIjoiRW1pbHkiLCJsYXN0TmFtZSI6IkpvaG5zb24iLCJnZW5kZXIiOiJmZW1hbGUiLCJpbWFnZSI6Imh0dHBzOi8vZHVtbXlqc29uLmNvbS9pY29uL2VtaWx5cy8xMjgiLCJpYXQiOjE3MjUxODY4MDAsImV4cCI6MTcyNTE5MDQwMH0.nJciqriWnS11f48qbtXFDd-IKlturyoXZnJ8OS_swLQ; refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJlbWlseXMiLCJlbWFpbCI6ImVtaWx5LmpvaG5zb25AeC5kdW1teWpzb24uY29tIiwiZmlyc3ROYW1lIjoiRW1pbHkiLCJsYXN0TmFtZSI6IkpvaG5zb24iLCJnZW5kZXIiOiJmZW1hbGUiLCJpbWFnZSI6Imh0dHBzOi8vZHVtbXlqc29uLmNvbS9pY29uL2VtaWx5cy8xMjgiLCJpYXQiOjE3MjUxODY4MDAsImV4cCI6MTcyNzc3ODgwMH0.fvgL97u9RA06qxVAPmQZwIvEQyNjqW-jSPwAyLwLuwo'
     };
-    var data = FormData.fromMap({
-      'username': username,
-      'password': password,
-      'expiresInMins': '50'
-    });
+    var data = FormData.fromMap(
+        {'username': username, 'password': password, 'expiresInMins': '50'});
 
     var dio = Dio();
     var response = await dio.request(
@@ -193,8 +190,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     if (response.statusCode == 200) {
       print(json.encode(response.data));
-    }
-    else {
+    } else {
       print(response.statusMessage);
     }
   }

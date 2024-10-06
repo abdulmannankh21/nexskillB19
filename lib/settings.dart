@@ -1,26 +1,20 @@
-import 'package:firstapp/settings.dart';
-import 'package:firstapp/widget/button.dart';
 import 'package:flutter/material.dart';
 
-class HomePage extends StatefulWidget {
-  final String? name;
-
-  const HomePage({super.key, this.name});
+class SettingsScreen extends StatefulWidget {
+  const SettingsScreen({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<SettingsScreen> createState() => _SettingsScreenState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _SettingsScreenState extends State<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      backgroundColor: Colors.lime,
       appBar: AppBar(
         title: const Text("NeX\$kill"),
       ),
-      drawerScrimColor: Colors.transparent,
-      drawerEnableOpenDragGesture: true,
       drawer: Drawer(
         backgroundColor: Colors.red,
         child: Column(
@@ -63,45 +57,39 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: [
-            Row(
-              children: [
-                Text(
-                  "Good Morning!",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
-                ),
-                Text(
-                  " ${widget.name}",
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 22,
-                      color: Colors.red),
-                ),
-              ],
-            ),
-            CustomButton(
-              text: 'Please Hit Button',
-              onTap: () {
-                Navigator.push(context,MaterialPageRoute(builder: (context) => SettingsScreen()));
-                print("You Hit Me !");
-              },
+      drawerScrimColor: Colors.transparent,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: GestureDetector(
+        onTap: () {
+          Navigator.pop(context);
+          print("Going Back from setting screen");
+        },
+        child: Container(
+            width: 50,
+            height: 50,
+            decoration: BoxDecoration(
               color: Colors.red,
-              borderRadius: 8.0,
+              borderRadius: BorderRadius.circular(8),
             ),
-          ],
-        ),
+            child: Center(
+                child: Icon(
+              Icons.arrow_back_ios,
+              color: Colors.white,
+            ))),
       ),
       bottomNavigationBar: BottomNavigationBar(
         selectedItemColor: Colors.red,
         items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home_filled), label: "Home"),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.settings), label: "Settings"),
+          BottomNavigationBarItem(icon: Icon(Icons.logout,color: Colors.grey,), label: " "),
+          BottomNavigationBarItem(icon: Icon(Icons.add,color: Colors.grey,), label: "Add"),
+          BottomNavigationBarItem(icon: Icon(Icons.menu,color: Colors.grey,), label: " "),
+          BottomNavigationBarItem(icon: Icon(Icons.note,color: Colors.grey,), label: " "),
         ],
       ),
+
+      // ElevatedButton(onPressed: (){
+      //   print("On Back");
+      // }, child: Text("On Back")),
     );
   }
 }
